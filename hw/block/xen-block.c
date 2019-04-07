@@ -625,7 +625,7 @@ static void xen_cdrom_realize(XenBlockDevice *blockdev, Error **errp)
 static void xen_cdrom_class_init(ObjectClass *class, void *data)
 {
     DeviceClass *dev_class = DEVICE_CLASS(class);
-    XenBlockDeviceClass *blockdev_class = XEN_BLOCK_DEVICE_CLASS(class);    
+    XenBlockDeviceClass *blockdev_class = XEN_BLOCK_DEVICE_CLASS(class);
 
     set_bit(DEVICE_CATEGORY_STORAGE, dev_class->categories);
     blockdev_class->realize = xen_cdrom_realize;

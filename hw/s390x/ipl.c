@@ -27,7 +27,6 @@
 #include "qemu/cutils.h"
 #include "qemu/option.h"
 #include "exec/exec-all.h"
-#include "sysemu/watchdog.h"
 
 #define KERN_IMAGE_START                0x010000UL
 #define LINUX_MAGIC_ADDR                0x010008UL
@@ -548,7 +547,7 @@ void s390_ipl_reset_request(CPUState *cs, enum s390_reset reset_type)
         /* ignore -no-reboot, send no event  */
         qemu_system_reset_request(SHUTDOWN_CAUSE_SUBSYSTEM_RESET);
     } else {
-        watchdog_perform_action();
+        qemu_system_reset_request(SHUTDOWN_CAUSE_GUEST_RESET);
     }
     /* as this is triggered by a CPU, make sure to exit the loop */
     if (tcg_enabled()) {
